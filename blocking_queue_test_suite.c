@@ -41,8 +41,11 @@ void test_blocking_queue_head_isnt_equal_tail(CuTest *suite) {
     container2->value = 256;
     blocking_queue_append_element(&queue, &container2);
     CuAssertIntEquals(suite, 2, queue->length);
-    CuAssertPtrEquals()
+    CuAssertPtrNotEquals(suite, queue->head, queue->tail);
 
+    free(queue);
+    free(container);
+    free(container2);
 }
 
 CuSuite* blocking_queue_get_test_suite() {
