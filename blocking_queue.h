@@ -7,6 +7,8 @@
 
 #include <event.h>
 
+#define BLOCKING_QUEUE_FAILED_TO_AQCUIRE_LOCK -5
+#define BLOCKING_QUEUE_EMPTY -4
 #define BLOCKING_QUEUE_INVALID -3
 #define BLOCKING_QUEUE_FAILED_TO_ALLOCATE_NODE -2
 #define BLOCKING_QUEUE_ALLOCATION_FAILURE -1
@@ -16,6 +18,7 @@
 typedef struct __BlockingQueueNode BlockingQueueNode;
 typedef struct __BlockingQueue BlockingQueue;
 typedef struct __PointerContainer PointerContainer;
+typedef void (*DeallocationFunction)(PointerContainer *);
 
 struct __BlockingQueueNode {
     PointerContainer *packet;
@@ -41,5 +44,10 @@ int blocking_queue_node_alloc(BlockingQueueNode **node, PointerContainer **eleme
 int blocking_queue_append_element(BlockingQueue **queue, PointerContainer **container);
 
 int blocking_queue_get_first_element(BlockingQueue **queue, PointerContainer **container);
+
+int blocking_queue_dealloc(BlockingQueue **queue, DeallocationFunction element_dealloc_function);
+
+int blocking_queue_node_dealloc(BlockingQueueNode **node);
+
 
 #endif //RTSPLIBRARY_BLOCKING_QUEUE_H

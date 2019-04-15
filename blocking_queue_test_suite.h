@@ -15,4 +15,6 @@ void test_blocking_queue_append(CuTest *suite);
 
 void test_blocking_queue_head_isnt_equal_tail(CuTest *suite);
 
+void test_blocking_queue_returns_put_element(CuTest *suite);
+
 #endif //BLOCKING_QUEUE_BLOCKING_QUEUE_TEST_SUITE_H

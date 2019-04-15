@@ -48,10 +48,19 @@ void test_blocking_queue_head_isnt_equal_tail(CuTest *suite) {
     free(container2);
 }
 
+void test_blocking_queue_returns_put_element(CuTest *suite) {
+    BlockingQueue *queue = NULL;
+    blocking_queue_alloc(&queue);
+    PointerContainer *container = malloc(sizeof(PointerContainer));
+    blocking_queue_append_element(&queue, &container);
+
+}
+
 CuSuite* blocking_queue_get_test_suite() {
     CuSuite* suite = CuSuiteNew();
     SUITE_ADD_TEST(suite, test_blocking_queue_alloc);
     SUITE_ADD_TEST(suite, test_blocking_queue_append);
     SUITE_ADD_TEST(suite, test_blocking_queue_head_isnt_equal_tail);
+    SUITE_ADD_TEST(suite, test_blocking_queue_returns_put_element);
     return suite;
 }
